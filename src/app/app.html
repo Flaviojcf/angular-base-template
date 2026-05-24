@@ -1,0 +1,106 @@
+<p-toast />
+
+<main class="min-h-screen bg-zinc-950 text-zinc-50">
+  <section class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-10 lg:px-12">
+    <header class="flex items-center justify-between border-b border-white/10 pb-6">
+      <a
+        class="text-sm font-semibold tracking-wide text-white"
+        href="/"
+        aria-label="Angular Base Template home"
+      >
+        Angular Base Template
+      </a>
+
+      <span
+        class="rounded-full border border-emerald-400/30 px-3 py-1 text-xs font-medium text-emerald-200"
+      >
+        Angular + Tailwind + PrimeNG
+      </span>
+    </header>
+
+    <div
+      class="grid flex-1 content-center gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center"
+    >
+      <section class="max-w-3xl">
+        <p class="mb-5 text-sm font-semibold tracking-[0.28em] text-emerald-300 uppercase">
+          Web application
+        </p>
+
+        <h1 class="text-5xl leading-tight font-semibold text-white sm:text-6xl lg:text-7xl">
+          Sua base Angular esta pronta para comecar.
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+          Projeto Angular configurado com Tailwind, PrimeNG, ESLint, testes e convencoes de
+          nomenclatura alinhadas ao seu jeito de trabalhar.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a
+            class="rounded-md bg-emerald-400 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-300 focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:outline-none"
+            href="https://angular.dev"
+            target="_blank"
+            rel="noopener"
+          >
+            Angular Docs
+          </a>
+
+          <a
+            class="rounded-md border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/35 hover:bg-white/5 focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:outline-none"
+            href="https://primeng.org"
+            target="_blank"
+            rel="noopener"
+          >
+            PrimeNG Docs
+          </a>
+        </div>
+      </section>
+
+      <section aria-label="Project setup status" class="border-l border-white/10 pl-6 sm:pl-8">
+        <dl class="space-y-7">
+          <div>
+            <dt class="text-sm font-medium text-zinc-400">Prefixo Angular</dt>
+            <dd class="mt-1 text-2xl font-semibold text-white">app</dd>
+          </div>
+
+          <div>
+            <dt class="text-sm font-medium text-zinc-400">Estilo</dt>
+            <dd class="mt-1 text-2xl font-semibold text-white">Tailwind-first</dd>
+          </div>
+
+          <div>
+            <dt class="text-sm font-medium text-zinc-400">UI</dt>
+            <dd class="mt-1 text-2xl font-semibold text-white">PrimeNG Toast</dd>
+          </div>
+
+          <div>
+            <dt class="text-sm font-medium text-zinc-400">Convencao</dt>
+            <dd class="mt-1 text-2xl font-semibold text-white">Component, Service, IInterface</dd>
+          </div>
+        </dl>
+
+        <div class="mt-10 border-t border-white/10 pt-7">
+          <p class="text-sm font-medium text-zinc-400">Teste de erros HTTP</p>
+
+          <div class="mt-4 flex flex-wrap gap-2">
+            @for (status of [400, 401, 403, 404, 500]; track status) {
+              <button
+                class="rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white transition hover:border-emerald-300/70 hover:bg-white/5 focus:ring-2 focus:ring-emerald-200 focus:ring-offset-2 focus:ring-offset-zinc-950 focus:outline-none"
+                type="button"
+                (click)="simulateHttpError(status)"
+              >
+                {{ status }}
+              </button>
+            }
+          </div>
+
+          @if (lastHttpErrorStatus(); as status) {
+            <p class="mt-3 text-sm text-emerald-200">Ultimo erro simulado: HTTP {{ status }}</p>
+          }
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<router-outlet />
