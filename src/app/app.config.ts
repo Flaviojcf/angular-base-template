@@ -1,6 +1,5 @@
 import { ApplicationConfig, ErrorHandler, provideBrowserGlobalErrorListeners } from "@angular/core";
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
-import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { provideHttpClient, withInterceptors, withXhr } from "@angular/common/http";
 import { provideRouter } from "@angular/router";
 import { MessageService } from "primeng/api";
 import { providePrimeNG } from "primeng/config";
@@ -14,8 +13,10 @@ import { httpErrorTestInterceptor } from "@core/error-handling/http-error-test.i
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideAnimationsAsync(),
-    provideHttpClient(withInterceptors([globalHttpErrorInterceptor, httpErrorTestInterceptor])),
+    provideHttpClient(
+      withXhr(),
+      withInterceptors([globalHttpErrorInterceptor, httpErrorTestInterceptor]),
+    ),
     provideRouter(routes),
     MessageService,
     {
