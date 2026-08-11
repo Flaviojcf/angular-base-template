@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, ChangeDetectionStrategy } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { ErrorTestingService } from "@core/error-handling/error-testing.service";
 import { ToastModule } from "primeng/toast";
@@ -6,6 +6,7 @@ import { ToastModule } from "primeng/toast";
 @Component({
   selector: "app-root",
   imports: [RouterOutlet, ToastModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./app.html",
 })
 export class AppComponent {

@@ -5,13 +5,29 @@ lint-staged e Vitest.
 
 ## Stack
 
-- Angular 21
+- Angular 22
 - Tailwind CSS 4
-- PrimeNG 21
+- PrimeNG 22
 - ESLint flat config com angular-eslint
 - Prettier com prettier-plugin-tailwindcss
 - Husky + lint-staged
 - Vitest via Angular CLI
+
+## Requisitos
+
+- Node.js `^22.22.3`, `^24.15.0` ou `^26.0.0`
+- npm `12.0.2`
+
+## Licenca do PrimeNG
+
+O PrimeNG 22 usa a licenca PrimeUI Community ou Commercial. Este template nao
+versiona uma chave de licenca. Cada projeto criado a partir dele deve obter a
+licenca adequada e configurar sua propria chave no `providePrimeNG` seguindo a
+[documentacao oficial](https://primeng.dev/configuration).
+
+A licenca Community exige elegibilidade, registro e renovacao anual. Consulte os
+[termos da licenca Community](https://primeui.dev/licenses/community) antes de usar
+o template em um projeto.
 
 ## Como Usar
 
