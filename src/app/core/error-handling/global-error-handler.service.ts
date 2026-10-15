@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { ErrorHandler, Injectable, inject } from "@angular/core";
 import { NotificationService } from "@core/notifications/notification.service";
 
@@ -9,6 +10,13 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     const normalizedError = this.normalizeError(error);
 
     console.error("[GlobalErrorHandler]", normalizedError);
+
+    // The HTTP interceptor already notified the user; an unhandled HTTP error
+    // must not show a second, generic toast.
+    if (error instanceof HttpErrorResponse) {
+      return;
+    }
+
     this.notificationService.error("Erro inesperado", "Tente novamente em instantes.");
   }
 
