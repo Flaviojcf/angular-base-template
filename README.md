@@ -12,6 +12,7 @@ lint-staged e Vitest.
 - Prettier com prettier-plugin-tailwindcss
 - Husky + lint-staged
 - Vitest via Angular CLI
+- Playwright com axe-core para testes end-to-end e de acessibilidade
 
 ## Requisitos
 
@@ -60,6 +61,7 @@ npm run verify
 npm start
 npm run build
 npm run test:ci
+npm run e2e
 npm run lint
 npm run format:check
 npm run verify
@@ -88,3 +90,18 @@ Aliases TypeScript configurados:
 - `@core/*`
 - `@features/*`
 - `@shared/*`
+
+## Testes end-to-end
+
+Os testes end-to-end ficam em `e2e/` com o sufixo `.e2e.ts` e usam Playwright.
+Localmente, o Playwright sobe o `ng serve`; para testar outro endereço, como uma
+imagem já em execução, defina `E2E_BASE_URL`. Antes da primeira execução, instale
+o navegador:
+
+```bash
+npx playwright install chromium
+npm run e2e
+```
+
+Toda página nova deve ganhar testes end-to-end, incluindo a verificação de
+acessibilidade com `AxeBuilder`. O CI falha quando não existe nenhum teste em `e2e/`.

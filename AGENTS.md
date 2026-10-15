@@ -52,3 +52,9 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Testing
+
+- Every page or user flow MUST have Playwright end-to-end tests in `e2e/` named `*.e2e.ts`.
+- End-to-end tests MUST include an `AxeBuilder` accessibility check for each page.
+- Prefer role-based locators (`getByRole`, `getByLabel`) over CSS selectors.
