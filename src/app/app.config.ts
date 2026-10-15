@@ -8,15 +8,11 @@ import Aura from "@primeuix/themes/aura";
 import { routes } from "./app.routes";
 import { GlobalErrorHandlerService } from "@core/error-handling/global-error-handler.service";
 import { globalHttpErrorInterceptor } from "@core/error-handling/global-http-error.interceptor";
-import { httpErrorTestInterceptor } from "@core/error-handling/http-error-test.interceptor";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(
-      withXhr(),
-      withInterceptors([globalHttpErrorInterceptor, httpErrorTestInterceptor]),
-    ),
+    provideHttpClient(withXhr(), withInterceptors([globalHttpErrorInterceptor])),
     provideRouter(routes),
     MessageService,
     {

@@ -1,47 +1,42 @@
 import { TestBed } from "@angular/core/testing";
-import { provideHttpClient, withInterceptors } from "@angular/common/http";
+import { Title } from "@angular/platform-browser";
+import { Router, provideRouter } from "@angular/router";
+import { RouterTestingHarness } from "@angular/router/testing";
 import { MessageService } from "primeng/api";
-import { globalHttpErrorInterceptor } from "@core/error-handling/global-http-error.interceptor";
-import { httpErrorTestInterceptor } from "@core/error-handling/http-error-test.interceptor";
 import { AppComponent } from "./app";
+import { APP_TITLE } from "./app.constants";
+import { routes } from "./app.routes";
 
 describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [
-        provideHttpClient(withInterceptors([globalHttpErrorInterceptor, httpErrorTestInterceptor])),
-        MessageService,
-      ],
+      providers: [provideRouter(routes), MessageService],
     }).compileComponents();
   });
 
-  it("should create the app", () => {
+  it("renders the notification outlet and the router outlet", () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it("should render title", async () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector("h1")?.textContent).toContain("Sua base Angular");
-  });
-
-  it("should simulate an HTTP error scenario", async () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    await fixture.whenStable();
-
-    const compiled = fixture.nativeElement as HTMLElement;
-    const button = Array.from(compiled.querySelectorAll("button")).find(
-      (element) => element.textContent?.trim() === "404",
-    );
-
-    button?.click();
-    await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(compiled.textContent).toContain("Ultimo erro simulado: HTTP 404");
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector("p-toast")).not.toBeNull();
+    expect(compiled.querySelector("router-outlet")).not.toBeNull();
+  });
+
+  it("lazy loads the home page and sets the document title", async () => {
+    const harness = await RouterTestingHarness.create("/");
+
+    expect(harness.routeNativeElement?.querySelector("h1")?.textContent).toContain(
+      "Sua base Angular",
+    );
+    expect(TestBed.inject(Title).getTitle()).toBe(APP_TITLE);
+  });
+
+  it("redirects unknown routes to the home page", async () => {
+    const harness = await RouterTestingHarness.create("/unknown/route");
+
+    expect(TestBed.inject(Router).url).toBe("/");
+    expect(harness.routeNativeElement?.querySelector("h1")).not.toBeNull();
   });
 });

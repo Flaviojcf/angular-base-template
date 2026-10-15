@@ -16,7 +16,7 @@ export const globalHttpErrorInterceptor: HttpInterceptorFn = (request, next) => 
           message: error.message,
         });
 
-        notificationService.error("Erro na requisicao", getHttpErrorMessage(error));
+        notificationService.error("Erro na requisição", getHttpErrorMessage(error));
       }
 
       return throwError(() => error);
@@ -27,18 +27,18 @@ export const globalHttpErrorInterceptor: HttpInterceptorFn = (request, next) => 
 function getHttpErrorMessage(error: HttpErrorResponse): string {
   switch (error.status) {
     case 0:
-      return "Nao foi possivel conectar ao servidor.";
+      return "Não foi possível conectar ao servidor.";
     case 400:
       return "Verifique os dados enviados.";
     case 401:
-      return "Sua sessao expirou.";
+      return "Sua sessão expirou.";
     case 403:
-      return "Voce nao tem permissao para executar esta acao.";
+      return "Você não tem permissão para executar esta ação.";
     case 404:
-      return "Recurso nao encontrado.";
+      return "Recurso não encontrado.";
     case 500:
       return "Erro interno. Tente novamente em instantes.";
     default:
-      return "Algo deu errado ao processar a requisicao.";
+      return "Algo deu errado ao processar a requisição.";
   }
 }
