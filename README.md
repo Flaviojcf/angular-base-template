@@ -29,7 +29,7 @@ na linha 4.1; a migração para a versão 5 deve ser avaliada separadamente.
 
 O PrimeNG 22 usa a licença PrimeUI Community ou Commercial. Este template não
 versiona uma chave de licença. Cada projeto criado a partir dele deve obter a
-licença adequada e configurar sua propria chave no `providePrimeNG` seguindo a
+licença adequada e configurar sua própria chave no `providePrimeNG` seguindo a
 [documentação oficial](https://primeng.dev/configuration).
 
 A licença Community exige elegibilidade, registro e renovação anual. Consulte os
