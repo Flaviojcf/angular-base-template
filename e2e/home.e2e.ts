@@ -1,16 +1,14 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { APP_TITLE } from "../src/app/app.constants";
 
 test.describe("home page", () => {
   test("shows the application shell", async ({ page }) => {
     await page.goto("/");
 
-    await expect(page).toHaveTitle("Angular Base Template");
+    await expect(page).toHaveTitle(APP_TITLE);
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Sua base Angular");
-    await expect(page.getByRole("link", { name: "Angular Base Template" })).toHaveAttribute(
-      "href",
-      "/",
-    );
+    await expect(page.getByRole("link", { name: APP_TITLE })).toHaveAttribute("href", "/");
   });
 
   test("falls back to the home page for unknown routes", async ({ page }) => {
