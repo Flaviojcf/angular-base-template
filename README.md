@@ -5,7 +5,7 @@ lint-staged e Vitest.
 
 ## Stack
 
-- Angular 22
+- Angular 22.2
 - Tailwind CSS 4
 - PrimeNG 22
 - ESLint flat config com angular-eslint
@@ -15,8 +15,15 @@ lint-staged e Vitest.
 
 ## Requisitos
 
-- Node.js `^22.22.3`, `^24.15.0` ou `^26.0.0`
-- npm `12.0.2`
+- Node.js 24 LTS (`24.22.0` ou superior dentro da linha 24)
+- npm `12.2.0`
+
+Os arquivos `.nvmrc` e `.node-version` fixam o Node.js usado no desenvolvimento e
+no CI. O workflow do GitHub Actions instala as dependencias com `npm ci` e executa
+`npm run verify` em cada pull request e push na `main`.
+
+O TypeScript permanece na linha 6.0, compativel com Angular 22.2. O Vitest permanece
+na linha 4.1; a migracao para a versao 5 deve ser avaliada separadamente.
 
 ## Licenca do PrimeNG
 
@@ -42,7 +49,7 @@ Crie um novo repositorio a partir deste template e ajuste:
 Depois rode:
 
 ```bash
-npm install
+npm ci
 npm run verify
 ```
 
